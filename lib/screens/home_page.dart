@@ -88,16 +88,6 @@ class _HomePageState extends State<HomePage> {
                   print('Is Starred : $_isStarred');
                 },
               ),
-              // GestureDetector(
-              //     child: Icon(Icons.favorite,
-              //         color: _isfavorite ? Colors.red : Colors.deepPurple),
-              //     onTap: () {
-              //       setState(() {
-              //         if (_isfavorite==true){
-              //           _isfavorite = false;
-              //         }
-              //       });
-              //     }),
             ],
           ),
           onTap: () => Navigator.push(
@@ -108,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                     note: note,
                   ))),
           subtitle:
-          Text("${_dateFormat.format(note.date!)} => ${note.priority}"),
+          Text("${_dateFormat.format(note.date!)} * ${note.priority}"),
         ),
       ),
     );
@@ -120,18 +110,18 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
           floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           appBar: AppBar(
+            elevation: 3.5,
+            centerTitle: true,
+            titleSpacing: 2.0,
             backgroundColor: Colors.deepPurpleAccent,
             title: const Text(
-              "New To-Do App",
+              "ToDo App",
               style: TextStyle(
                 fontSize: 25,
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            elevation: 3.5,
-            centerTitle: true,
-            titleSpacing: 2.0,
           ),
           floatingActionButton: FloatingActionButton(
               onPressed: () {

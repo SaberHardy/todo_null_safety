@@ -19,7 +19,7 @@ class _AddNoteState extends State<AddNote> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController _dateController = TextEditingController();
 
-  final List<String> _priorities = ["Low", "Medium", "Hight"];
+  final List<String> _priorities = ["Low", "Medium", "High"];
 
   String _priority = "Low";
   String _title = '';
