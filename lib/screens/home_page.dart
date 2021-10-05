@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:todo_with_nullsafety/database/db_helper.dart';
 import 'package:todo_with_nullsafety/models/note_model.dart';
 import 'package:todo_with_nullsafety/screens/add_update.dart';
+import 'package:todo_with_nullsafety/screens/pop_up_widget.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -104,6 +105,29 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+
+  // Widget _buildPopupDialog(BuildContext context) {
+  //   return AlertDialog(
+  //     title: const Text('Popup example'),
+  //     content: Column(
+  //       mainAxisSize: MainAxisSize.min,
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: <Widget>[
+  //         Text("Hello"),
+  //       ],
+  //     ),
+  //     actions: <Widget>[
+  //       FlatButton(
+  //         onPressed: () {
+  //           Navigator.of(context).pop();
+  //         },
+  //         textColor: Theme.of(context).primaryColor,
+  //         child: const Text('Close'),
+  //       ),
+  //     ],
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -125,12 +149,16 @@ class _HomePageState extends State<HomePage> {
           ),
           floatingActionButton: FloatingActionButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                        builder: (_) => AddNote(
-                          updateNoteList: _updateNoteList,
-                        )));
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => PopUpWindow(),
+                );
+                // Navigator.push(
+                //     context,
+                //     CupertinoPageRoute(
+                //         builder: (_) => AddNote(
+                //           updateNoteList: _updateNoteList,
+                //         )));
               },
               elevation: 3.2,
               backgroundColor: Colors.deepPurple,
