@@ -7,17 +7,14 @@ import 'package:todo_with_nullsafety/models/note_model.dart';
 import 'package:todo_with_nullsafety/screens/add_update.dart';
 import 'package:todo_with_nullsafety/screens/pop_up_widget.dart';
 
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-
   late Future<List<Note>> _noteList;
   final DateFormat _dateFormat = DateFormat("MMM dd, yyyy");
-
   final DatabaseHelper _databaseHelper = DatabaseHelper.instance;
 
   @override
@@ -30,8 +27,6 @@ class _HomePageState extends State<HomePage> {
   _updateNoteList() {
     _noteList = DatabaseHelper.instance.getNoteList();
   }
-
-  var _isfavorite = false;
 
   Widget _buildListNodes(Note note) {
     return Padding(
@@ -95,16 +90,15 @@ class _HomePageState extends State<HomePage> {
               context,
               CupertinoPageRoute(
                   builder: (_) => AddNote(
-                    updateNoteList: _updateNoteList,
-                    note: note,
-                  ))),
+                        updateNoteList: _updateNoteList(),
+                        note: note,
+                      ))),
           subtitle:
-          Text("${_dateFormat.format(note.date!)} * ${note.priority}"),
+              Text("${_dateFormat.format(note.date!)} * ${note.priority}"),
         ),
       ),
     );
   }
-
 
   // Widget _buildPopupDialog(BuildContext context) {
   //   return AlertDialog(
@@ -132,7 +126,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
           appBar: AppBar(
             elevation: 3.5,
             centerTitle: true,
@@ -151,7 +146,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) => PopUpWindow(),
+                  builder: (BuildContext context) => PopUpWindow(updateNoteList: _updateNoteList),
                 );
                 // Navigator.push(
                 //     context,
@@ -191,8 +186,8 @@ class _HomePageState extends State<HomePage> {
                             children: <Widget>[
                               const Text(
                                 "My Notes",
-                                style: TextStyle(color: Colors.black,fontSize: 25),
-
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 25),
                               ),
                               const SizedBox(height: 10.0),
                               Text(
